@@ -1,25 +1,15 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
 import Login from '../components/Login.vue';
-import Books from '../components/Books.vue';  // หน้า Books
-
-Vue.use(VueRouter);
+import BookList from '../components/BookList.vue';
 
 const routes = [
-  {
-    path: '/',
-    name: 'Login',
-    component: Login
-  },
-  {
-    path: '/books',
-    name: 'Books',
-    component: Books
-  },
+  { path: '/', component: Login },
+  { path: '/books', component: BookList }
 ];
 
-const router = new VueRouter({
-  routes
+const router = createRouter({
+  history: createWebHistory(),
+  routes,
 });
 
 export default router;

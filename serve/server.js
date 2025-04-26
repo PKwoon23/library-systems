@@ -1,12 +1,36 @@
-const express = require('express');
-const app = express();
-const bookRoutes = require('./routes/bookRoutes');
+// server/server.js
 
-// ใช้งานเส้นทาง API
-app.use(express.json());
-app.use('/api', bookRoutes);
+import http from 'http';
+import { Pool } from 'pg';
 
-// เปิดเซิร์ฟเวอร์ที่พอร์ต 3000
-app.listen(3000, () => {
-  console.log('Server is running on http://localhost:3000');
+// สร้าง connection กับ PostgreSQL
+const pool = new Pool({
+  user: 'postgres',
+  host: 'localhost',
+  database: 'library_system',
+  password: 'phomporn222', // ใส่รหัสจริงของหนู
+  port: 5432,
+});
+
+// สร้าง server
+const server = http.createServer(async (req, res) => {
+  if (req.method === 'GET' && req.url === '/books') {
+    try {
+      const result = await pool.query('SELECT * FROM books');
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify(result.rows));
+    } catch (err) {
+      console.error(err);
+      res.writeHead(500, { 'Content-Type': 'text/plain' });
+      res.end('Server Error');
+    }
+  } else {
+    res.writeHead(404, { 'Content-Type': 'text/plain' });
+    res.end('Not Found');
+  }
+});
+
+// ให้ server รันที่พอร์ต 3000
+server.listen(3000, () => {
+  console.log('Server running at http://localhost:3000');
 });
