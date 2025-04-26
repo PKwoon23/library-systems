@@ -1,5 +1,4 @@
 // server/server.js
-
 import http from 'http';
 import { Pool } from 'pg';
 
@@ -8,7 +7,7 @@ const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
   database: 'library_system',
-  password: 'phomporn222', // ใส่รหัสจริงของหนู
+  password: 'phomporn222', // ใส่รหัสจริงของคุณ
   port: 5432,
 });
 

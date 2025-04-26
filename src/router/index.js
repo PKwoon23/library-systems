@@ -1,3 +1,4 @@
+// router/index.js
 import { createRouter, createWebHistory } from 'vue-router';
 import Login from '../components/Login.vue';
 import BookList from '../components/BookList.vue';

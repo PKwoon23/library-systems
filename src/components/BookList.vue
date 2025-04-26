@@ -1,3 +1,4 @@
+<!-- components/BookList.vue -->
 <template>
     <div class="book-list">
       <h2>Book List</h2>
@@ -25,6 +26,9 @@
       async fetchBooks() {
         try {
           const response = await fetch('http://localhost:3000/books');
+          if (!response.ok) {
+            throw new Error('Failed to fetch books');
+          }
           const data = await response.json();
           this.books = data;
         } catch (error) {
