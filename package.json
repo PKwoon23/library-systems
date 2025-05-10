@@ -1,5 +1,5 @@
 {
-  "name": "frontend",
+  "name": "library_system",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,6 +9,9 @@
   },
   "dependencies": {
     "core-js": "^3.8.3",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "pg": "^8.15.6",
     "vue": "^3.2.13",
     "vue-router": "^4.5.1"
   },

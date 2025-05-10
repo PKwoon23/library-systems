@@ -2,28 +2,17 @@ import { createRouter, createWebHistory } from 'vue-router';
 
 import LoginPage from '../views/LoginPage.vue';
 import DashboardPage from '../views/DashboardPage.vue';
+import BookList from '../components/BookList.vue';
 
-// Define routes
 const routes = [
-  {
-    path: '/',
-    redirect: '/login' // Redirect root to /login
-  },
-  {
-    path: '/login',
-    name: 'Login',
-    component: LoginPage
-  },
-  {
-    path: '/dashboard',
-    name: 'Dashboard',
-    component: DashboardPage
-  }
+  { path: '/', redirect: '/login' }, // รีไดเร็กต์ root ไปที่ /login
+  { path: '/login', name: 'Login', component: LoginPage },
+  { path: '/dashboard', name: 'Dashboard', component: DashboardPage },
+  { path: '/books', component: BookList }
 ];
 
-// Create router instance
 const router = createRouter({
-  history: createWebHistory(), 
+  history: createWebHistory(),
   routes
 });
 
