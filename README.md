@@ -14,7 +14,7 @@
 ![image](https://github.com/user-attachments/assets/b6b4ad7e-7027-4f4a-97f5-32423343dcd1)
 
 ## 🛠 เทคโนโลยีที่ใช้ (Technology Stack)
-🎨 Frontend
+### 🎨 Frontend
 - Vue.js
 ใช้สร้าง UI แบบ Reactive และโต้ตอบได้ พร้อมจัดการข้อมูลด้วย v-model, methods, และ lifecycle hook
 
@@ -30,7 +30,7 @@
 - Responsive Design
 รองรับการแสดงผลทั้งใน Desktop และ Mobile ผ่าน Media Queries
 
-🔧 Backend
+### 🔧 Backend
 - Node.js
 สภาพแวดล้อมรัน JavaScript ฝั่งเซิร์ฟเวอร์
 
@@ -49,7 +49,7 @@
 ## 🚀 วิธีการติดตั้งและเริ่มต้นใช้งาน (How to Install and Get Started)
 ### 1. โคลนโปรเจกต์จาก GitHub
 
-   git clone https://github.com/PKwoon23/library-systems.git
+         git clone https://github.com/PKwoon23/library-systems.git
          cd library-systems
 
 ### 2. ติดตั้งและรัน Backend (Express.js)
