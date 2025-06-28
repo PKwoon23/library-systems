@@ -1,9 +1,12 @@
-// main.js
 import { createApp } from 'vue';
 import App from './App.vue';
+
 import router from './router'; 
+
+import router from './router'; // <-- นำเข้า router
+
 
 const app = createApp(App);
 
-app.use(router); // <-- บอก Vue ให้ใช้ Router
+app.use(router); // <-- ใช้ router กับแอป
 app.mount('#app');
