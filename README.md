@@ -49,7 +49,6 @@
 ## 🚀 วิธีการติดตั้งและเริ่มต้นใช้งาน (How to Install and Get Started)
 1. โคลนโปรเจกต์จาก GitHub
 
-```bash
 git clone https://github.com/PKwoon23/library-systems.git
 cd library-systems
 
