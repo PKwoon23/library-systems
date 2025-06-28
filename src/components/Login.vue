@@ -1,4 +1,3 @@
-<!-- components/Login.vue -->
 <template>
   <div class="login-container">
     <h2>Login</h2>
@@ -27,16 +26,13 @@ export default {
   },
   methods: {
     Login() {
-      // ตัวอย่างการตรวจสอบชื่อผู้ใช้งานและรหัสผ่าน
-      const validUsername = 'admin'; // กำหนดชื่อผู้ใช้
-      const validPassword = 'password123'; // กำหนดรหัสผ่าน
+      const validUsername = 'admin'; 
+      const validPassword = 'password123'; 
 
       // ตรวจสอบชื่อผู้ใช้และรหัสผ่าน
       if (this.username === validUsername && this.password === validPassword) {
-        // ถ้าถูกต้องให้ไปที่หน้า 'books'
         this.$router.push('/books');
       } else {
-        // ถ้าผิดให้แสดงข้อความแจ้งเตือน
         alert('ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง');
       }
     },
@@ -45,7 +41,6 @@ export default {
 </script>
 
 <style scoped>
-/* คุณสามารถปรับสไตล์ให้เหมาะสมตามต้องการ */
 .login-container {
   width: 300px;
   margin: 0 auto;

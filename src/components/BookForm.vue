@@ -100,6 +100,6 @@
   </script>
   
   <style scoped>
-  /* ใส่สไตล์เพิ่มเติม */
-  </style>
+
+</style>
   

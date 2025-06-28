@@ -36,13 +36,13 @@
           </td>
 
           <td>
-            <!-- ปุ่มยืมคืนจะไม่แสดงในขณะแก้ไข -->
+            <!-- ปุ่มยืมคืน -->
             <button v-if="editingBookId !== book.id" @click="toggleBookStatus(book)" class="action-button" 
                     :class="book.status === 'ยืมแล้ว' ? 'return-button' : 'borrow-button'">
               {{ book.status === 'ยืมแล้ว' ? 'คืนหนังสือ' : 'ยืมหนังสือ' }}
             </button>
 
-            <!-- ปุ่มแก้ไขและลบเมื่อไม่ได้แก้ไข -->
+            <!-- ปุ่มแก้ไขและลบ -->
             <template v-if="editingBookId === book.id">
               <button @click="saveEditedTitle(book.id)" class="action-button edit-button">บันทึก</button>
               <button @click="cancelEdit" class="action-button delete-button">ยกเลิก</button>
@@ -64,7 +64,7 @@ export default {
   name: 'BookList',
   data() {
     return {
-      books: [], // เอาไว้เก็บข้อมูลหนังสือ
+      books: [], // เก็บข้อมูลหนังสือ
       newBook: { title: '' }, // ข้อมูลหนังสือใหม่
       editingBookId: null, // id ของหนังสือที่กำลังแก้ไข
       editedTitle: '', // ชื่อหนังสือที่กำลังแก้ไข
