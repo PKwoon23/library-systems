@@ -53,7 +53,7 @@
 git clone https://github.com/PKwoon23/library-systems.git
 cd library-systems
 
-### 2. ติดตั้งและรัน Backend (Express.js)
+2. ติดตั้งและรัน Backend (Express.js)
 
 cd backend
 npm install
@@ -61,7 +61,7 @@ node index.js
 
 - เซิร์ฟเวอร์จะรันที่ http://localhost:3000
 
-### 3. ติดตั้งและรัน Frontend (Vue.js)
+3. ติดตั้งและรัน Frontend (Vue.js)
 
 cd ../frontend
 npm install
