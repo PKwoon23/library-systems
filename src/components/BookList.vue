@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <template>
   <div class="container">
     <!-- ฟอร์มสำหรับการเพิ่มหนังสือ -->
@@ -62,20 +61,19 @@
 
 <script>
 export default {
+  name: 'BookList',
   data() {
     return {
-      books: [], // เอาไว้เก็บข้อมูลหนังสือที่ได้จาก API
+      books: [], // เอาไว้เก็บข้อมูลหนังสือ
       newBook: { title: '' }, // ข้อมูลหนังสือใหม่
-      editingBookId: null, // เก็บ id ของหนังสือที่กำลังแก้ไข
-      editedTitle: '', // เก็บชื่อหนังสือที่กำลังแก้ไข
+      editingBookId: null, // id ของหนังสือที่กำลังแก้ไข
+      editedTitle: '', // ชื่อหนังสือที่กำลังแก้ไข
     };
   },
   async mounted() {
-    await this.fetchBooks(); // ดึงข้อมูลหนังสือเมื่อเพจโหลด
+    await this.fetchBooks();
   },
-
   methods: {
-    // ฟังก์ชันดึงข้อมูลหนังสือทั้งหมด
     async fetchBooks() {
       try {
         const response = await fetch('http://localhost:3000/books/get');
@@ -83,13 +81,11 @@ export default {
           throw new Error('ไม่สามารถดึงข้อมูลหนังสือได้');
         }
         const data = await response.json();
-        this.books = data; // ตั้งค่า books ด้วยข้อมูลที่ได้จาก API
+        this.books = data;
       } catch (error) {
         console.error('เกิดข้อผิดพลาดในการดึงข้อมูล:', error);
       }
     },
-
-    // เพิ่มหนังสือใหม่
     async addBook() {
       if (!this.newBook.title) {
         alert('กรุณากรอกชื่อหนังสือ');
@@ -98,14 +94,12 @@ export default {
       try {
         const response = await fetch('http://localhost:3000/books/create', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(this.newBook),
         });
         if (response.ok) {
-          this.newBook.title = ''; // เคลียร์ช่องกรอกชื่อ
-          await this.fetchBooks(); // รีเฟรชตารางใหม่
+          this.newBook.title = '';
+          await this.fetchBooks();
         } else {
           console.error('ไม่สามารถเพิ่มหนังสือได้');
         }
@@ -113,14 +107,10 @@ export default {
         console.error('เกิดข้อผิดพลาดในการเพิ่มหนังสือ:', error);
       }
     },
-
-    // เริ่มต้นการแก้ไข
     startEditing(book) {
       this.editingBookId = book.id;
       this.editedTitle = book.title;
     },
-
-    // บันทึกชื่อหนังสือใหม่
     async saveEditedTitle(id) {
       if (!this.editedTitle.trim()) {
         alert('กรุณากรอกชื่อหนังสือ');
@@ -129,15 +119,13 @@ export default {
       try {
         const response = await fetch(`http://localhost:3000/books/update/${id}`, {
           method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ title: this.editedTitle }),
         });
         if (response.ok) {
           this.editingBookId = null;
           this.editedTitle = '';
-          await this.fetchBooks(); // รีเฟรชข้อมูลหลังจากการแก้ไข
+          await this.fetchBooks();
         } else {
           console.error('ไม่สามารถแก้ไขหนังสือได้');
         }
@@ -145,23 +133,17 @@ export default {
         console.error('เกิดข้อผิดพลาดในการแก้ไขหนังสือ:', error);
       }
     },
-
-    // ยกเลิกการแก้ไข
     cancelEdit() {
       this.editingBookId = null;
       this.editedTitle = '';
     },
-
-    // ลบหนังสือ
     async deleteBook(id) {
       try {
         const response = await fetch(`http://localhost:3000/books/delete/${id}`, {
           method: 'DELETE',
         });
         if (response.ok) {
-          const result = await response.json();
-          this.books = this.books.filter(book => book.id !== id); // ลบหนังสือออกจากตาราง
-          console.log(result.message);
+          this.books = this.books.filter(book => book.id !== id);
         } else {
           console.error('ไม่สามารถลบหนังสือได้');
         }
@@ -169,20 +151,16 @@ export default {
         console.error('เกิดข้อผิดพลาดในการลบหนังสือ:', error);
       }
     },
-
-    // ยืมหรือคืนหนังสือ
     async toggleBookStatus(book) {
       const newStatus = book.status === 'ยืมแล้ว' ? 'พร้อมให้ยืม' : 'ยืมแล้ว';
       try {
         const response = await fetch(`http://localhost:3000/books/update/${book.id}`, {
           method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ status: newStatus }),
         });
         if (response.ok) {
-          await this.fetchBooks(); // รีเฟรชข้อมูลหลังจากเปลี่ยนสถานะ
+          await this.fetchBooks();
         } else {
           console.error('ไม่สามารถเปลี่ยนสถานะหนังสือได้');
         }
@@ -190,7 +168,7 @@ export default {
         console.error('เกิดข้อผิดพลาดในการเปลี่ยนสถานะหนังสือ:', error);
       }
     },
-  }
+  },
 };
 </script>
 
@@ -226,14 +204,7 @@ export default {
   border-collapse: collapse;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  border: 1px solid #484343;
-}
-
-th,
-td {
+th, td {
   padding: 15px;
   text-align: center;
   border: 1px solid #000000;
@@ -280,7 +251,6 @@ thead {
   margin-right: 0;
 }
 
-/* Responsive Styles */
 @media screen and (max-width: 600px) {
   table {
     display: block;
@@ -288,8 +258,7 @@ thead {
     white-space: nowrap;
   }
 
-  th,
-  td {
+  th, td {
     padding: 8px;
   }
 
@@ -307,49 +276,3 @@ thead {
   }
 }
 </style>
-=======
-<!-- components/BookList.vue -->
-<template>
-    <div class="book-list">
-      <h2>Book List</h2>
-      <ul v-if="books.length > 0">
-        <li v-for="book in books" :key="book.id">
-          {{ book.title }} - {{ book.author }}
-        </li>
-      </ul>
-      <p v-else>ไม่มีข้อมูลหนังสือ</p>
-    </div>
-  </template>
-  
-  <script>
-  export default {
-    name: 'BookList',
-    data() {
-      return {
-        books: [], // สร้าง array ไว้เก็บหนังสือ
-      };
-    },
-    mounted() {
-      this.fetchBooks();
-    },
-    methods: {
-      async fetchBooks() {
-        try {
-          const response = await fetch('http://localhost:3000/books');
-          if (!response.ok) {
-            throw new Error('Failed to fetch books');
-          }
-          const data = await response.json();
-          this.books = data;
-        } catch (error) {
-          console.error('Error fetching books:', error);
-        }
-      },
-    },
-  };
-  </script>
-  
-  <style scoped>
-  /* ใส่สไตล์ตามต้องการ */
-  </style>
->>>>>>> 136bbc079fe9db8af3c59e69ed74ae1b7b130d9e

@@ -1,21 +1,12 @@
-const { defineConfig } = require('@vue/cli-service')
-
-module.exports = defineConfig({
-  transpileDependencies: true,  
+module.exports = {
+  transpileDependencies: [
+    'some-dependency'  // เปลี่ยนชื่อเป็นชื่อ dependencies ที่ต้องการให้ transpile
+  ],
   configureWebpack: {
     plugins: [
       new (require('webpack')).DefinePlugin({
-        __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: JSON.stringify(true), 
+        __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: JSON.stringify(true),
       }),
     ],
   },
-})
-const { defineConfig } = require('@vue/cli-service');
-
-module.exports = defineConfig({
-  transpileDependencies: true,
-  // เพิ่มการกำหนด feature flag สำหรับ hydration mismatch
-  define: {
-    __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: JSON.stringify(true)
-  }
-});
+};
