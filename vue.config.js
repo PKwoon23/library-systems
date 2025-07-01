@@ -1,11 +1,8 @@
 module.exports = {
-  transpileDependencies: [
-    'some-dependency' 
-  ],
   configureWebpack: {
     plugins: [
       new (require('webpack')).DefinePlugin({
-        __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: JSON.stringify(true),
+        __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: true,
       }),
     ],
   },
